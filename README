@@ -1,0 +1,4 @@
+compile: In pom.xml directory -> mvn compile
+exec: In pom.xml directory -> mvn exec:java
+compile and exec: In pom.xml directory -> mvn compile exec:java
+

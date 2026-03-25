@@ -1,0 +1,10 @@
+# Database
+clients.db
+
+# Maven
+target/
+
+# Misc
+*.class
+
+EOF
