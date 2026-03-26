@@ -20,7 +20,10 @@ public class DatabaseManager{
                 id      INTEGER PRIMARY KEY AUTOINCREMENT,
                 name    TEXT NOT NULL,
                 phone   TEXT,
-                address TEXT
+                address TEXT,
+                seasonPrice INTEGER,
+                remainingDebt INTEGER
+
             )
             """;
         try (Connection conn = connect();

@@ -1,6 +1,5 @@
 package com.maintenanceAdjoka.app.backend;
 
-// import com.maintenaceAdjoka.app.
 import com.maintenanceAdjoka.app.backend.models.Client;
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,11 +15,14 @@ public class ClientDAO {
             pstmt.setString(1, c.getName());
             pstmt.setString(2, c.getPhoneNumber());
             pstmt.setString(3, c.getAddress());
+            pstmt.setInt(4, c.getSeasonPrice());
             pstmt.executeUpdate();
         }
     }
 
     // READ ALL
+    //
+    // add les truc pour le season price et reamining debt
     public static List<Client> findAll() throws Exception {
         String sql = "SELECT * FROM clients";
         List<Client> clients = new ArrayList<>();
@@ -31,8 +33,30 @@ public class ClientDAO {
                 clients.add(new Client(
                     rs.getString("name"),
                     rs.getString("phone"),
-                    rs.getString("address")
+                    rs.getString("address"),
+                    rs.getInt("seasonPrice")
                 ));
+            }
+        }
+        return clients;
+    }
+
+    // FIND BY NAME
+    public static List<Client> getClientByName(String name) throws Exception {
+        String sql = "SELECT * FROM clients WHERE name LIKE ?";
+        List<Client> clients = new ArrayList<>();
+        try (Connection conn = DatabaseManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, "%" + name + "%");
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    clients.add(new Client(
+                        rs.getString("name"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getInt("seasonPrice")
+                    ));
+                }
             }
         }
         return clients;

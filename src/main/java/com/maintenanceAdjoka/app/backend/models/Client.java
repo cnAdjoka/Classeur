@@ -1,5 +1,5 @@
 package com.maintenanceAdjoka.app.backend.models;
-
+// TODO: Change the client structure to include more detailed fields about the address such as town, street name etc
 public class Client{
 
   private String name;
@@ -8,13 +8,17 @@ public class Client{
   private int seasonPrice;
   private int remainingDebt;
 
-public Client (String name, String phoneNumber, String address){
+//Constructor for client with no specific information about the client
+public Client (String name, String phoneNumber, String address, int seasonPrice){
   this.name = name;
   this.phoneNumber = phoneNumber;
   this.address = address;
-  this.seasonPrice = 0;
+  this.seasonPrice = seasonPrice;
   this.remainingDebt = seasonPrice;
 }
+
+
+
 
 public void setName(String newName){
   this.name = newName; 
@@ -49,17 +53,13 @@ public int getSeasonPrice(){
   return this.seasonPrice;
 }
 
-public void printBalance(){
-  int amountPayed = seasonPrice - remainingDebt;
+public String printBalance(){
 
   if(this.seasonPrice != 0){
-
-    System.out.println("Initial Amount : " + seasonPrice);
-    System.out.println("Amount Payed : " + amountPayed);
-    System.out.println("Amount Left to Pay :" + remainingDebt);
+    int amountPayed = seasonPrice - remainingDebt;
+    return ("Initial Amount : " + seasonPrice + "\nAmount Payed : " + amountPayed + "\nAmount Left to Pay :" + remainingDebt);
   }
-
-  else{System.out.println("Client owes nothing");}
+  else{return "Client owes nothing";}
 }
 
 public void pay(int amountPayed){

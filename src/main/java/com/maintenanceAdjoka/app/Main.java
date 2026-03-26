@@ -33,7 +33,7 @@ public class Main{
 
 //Shell loop
 
-    String help = "Command not found \nAvailable Commands: \nnewcl ->      Creates a new client and saves the client information into the database \nlscl ->      lists all the clients and their informations \nexit ->      exits the shell";
+    String help = "Command not found \nAvailable Commands: \nnewcl ->      Creates a new client and saves the client information into the database \nlscl ->      lists all the clients and their informations \nexit ->      exits the shell \nfncl -> find a client by name";
     Scanner s = new Scanner(System.in);
     boolean runningShell = true; 
     while(runningShell){
@@ -60,7 +60,12 @@ public class Main{
           System.out.print("Client Address: ");
           String address =  s.nextLine();
 
-          Client c = new Client(name, phoneNumber, address);
+          System.out.print("\n<Classeur-Maintenance-Adjoka> ");
+          System.out.print("Season price: ");
+          String seasonPrice = s.nextLine();
+          int price =  Integer.parseInt(seasonPrice);
+
+          Client c = new Client(name, phoneNumber, address, price);
 
 
           System.out.print("\n<Classeur-Maintenance-Adjoka> ");
@@ -82,6 +87,7 @@ public class Main{
            System.out.println("Client Name: "+ cl.getName());
            System.out.println("Client Phone Number: "+ cl.getPhoneNumber());
            System.out.println("Client Address: "+ cl.getAddress());
+           System.out.println("Season price :" + cl.printBalance());
          }
 
           }catch(Exception e){
@@ -90,7 +96,31 @@ public class Main{
 
          break;
 
-        
+        case "fncl":
+         System.out.print("Looking up client with the name: ");
+         String clientName = s.nextLine();
+
+         try{List <Client> clients =  ClientDAO.getClientByName(clientName);
+
+           if (clients.size() == 0){
+             System.out.println("No client found with the name \""+ clientName +"\"");
+             break;
+        }
+
+         for(Client cl : clients){
+
+           System.out.println("////////////////////////////////////////////////");
+           System.out.println("Client Name: "+ cl.getName());
+           System.out.println("Client Phone Number: "+ cl.getPhoneNumber());
+           System.out.println("Client Address: "+ cl.getAddress());
+           System.out.println("Season price :" + cl.printBalance());
+
+         }break;
+         }catch(Exception e){System.out.println("Error in the client search");}
+
+
+
+
           
         case ("exit"):
           runningShell = false;
