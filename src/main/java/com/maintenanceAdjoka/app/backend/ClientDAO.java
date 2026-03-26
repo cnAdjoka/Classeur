@@ -9,7 +9,7 @@ public class ClientDAO {
 
     // CREATE
     public static void save(Client c) throws Exception {
-        String sql = "INSERT INTO clients (name, phone, address) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO clients (name, phone, address, seasonPrice) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, c.getName());
@@ -35,6 +35,7 @@ public class ClientDAO {
                     rs.getString("phone"),
                     rs.getString("address"),
                     rs.getInt("seasonPrice")
+
                 ));
             }
         }

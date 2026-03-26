@@ -71,7 +71,10 @@ public class Main{
           System.out.print("\n<Classeur-Maintenance-Adjoka> ");
           try{ClientDAO.save(c);
           }
-          catch(Exception e){System.out.println("Client has not been saved into the DB: " + e);}
+          catch(Exception e){
+            System.out.println("Client has not been saved into the DB: " + e);
+            break;
+          }
 
           System.out.println("Client : "+  c.getName() +" has been saved to the databse");
 
