@@ -9,13 +9,15 @@ public class ClientDAO {
 
     // CREATE
     public static void save(Client c) throws Exception {
-        String sql = "INSERT INTO clients (name, phone, address, seasonPrice) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO clients (name, phone, address, town, seasonPrice) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, c.getName());
             pstmt.setString(2, c.getPhoneNumber());
             pstmt.setString(3, c.getAddress());
-            pstmt.setInt(4, c.getSeasonPrice());
+            pstmt.setString(4, c.getTown());
+            pstmt.setInt(5, c.getSeasonPrice());
+            
             pstmt.executeUpdate();
         }
     }
@@ -34,6 +36,7 @@ public class ClientDAO {
                     rs.getString("name"),
                     rs.getString("phone"),
                     rs.getString("address"),
+                    rs.getString("town"),
                     rs.getInt("seasonPrice")
 
                 ));
@@ -55,6 +58,7 @@ public class ClientDAO {
                         rs.getString("name"),
                         rs.getString("phone"),
                         rs.getString("address"),
+                        rs.getString("town"),
                         rs.getInt("seasonPrice")
                     ));
                 }

@@ -61,11 +61,16 @@ public class Main{
           String address =  s.nextLine();
 
           System.out.print("\n<Classeur-Maintenance-Adjoka> ");
+          System.out.print("Client Town: ");
+          String town =  s.nextLine();
+
+
+          System.out.print("\n<Classeur-Maintenance-Adjoka> ");
           System.out.print("Season price: ");
           String seasonPrice = s.nextLine();
           int price =  Integer.parseInt(seasonPrice);
 
-          Client c = new Client(name, phoneNumber, address, price);
+          Client c = new Client(name, phoneNumber, town, address, price);
 
 
           System.out.print("\n<Classeur-Maintenance-Adjoka> ");
@@ -90,7 +95,8 @@ public class Main{
            System.out.println("Client Name: "+ cl.getName());
            System.out.println("Client Phone Number: "+ cl.getPhoneNumber());
            System.out.println("Client Address: "+ cl.getAddress());
-           System.out.println("Season price :" + cl.printBalance());
+           System.out.println("Client Town: " + cl.getTown());
+           System.out.println("Season price :" + cl.getSeasonPrice());
          }
 
           }catch(Exception e){
@@ -116,6 +122,7 @@ public class Main{
            System.out.println("Client Name: "+ cl.getName());
            System.out.println("Client Phone Number: "+ cl.getPhoneNumber());
            System.out.println("Client Address: "+ cl.getAddress());
+           System.out.println("Client Town: "+ cl.getTown());
            System.out.println("Season price :" + cl.printBalance());
 
          }break;

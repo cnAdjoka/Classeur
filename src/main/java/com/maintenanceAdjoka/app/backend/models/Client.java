@@ -5,14 +5,16 @@ public class Client{
   private String name;
   private String phoneNumber;
   private String address;
+  private String town;
   private int seasonPrice;
   private int remainingDebt;
 
 //Constructor for client with no specific information about the client
-public Client (String name, String phoneNumber, String address, int seasonPrice){
+public Client (String name, String phoneNumber, String address, String town, int seasonPrice){
   this.name = name;
   this.phoneNumber = phoneNumber;
   this.address = address;
+  this.town = town;
   this.seasonPrice = seasonPrice;
   this.remainingDebt = seasonPrice;
 }
@@ -30,7 +32,6 @@ public String getName(){
 
 public void setPhoneNumber(String newPhoneNumber){
   this.phoneNumber =  newPhoneNumber;
-
 }
 
 public String getPhoneNumber (){
@@ -43,6 +44,13 @@ public void setAddress(String newAddress){
 
 public String getAddress(){
   return this.address;
+}
+
+public String getTown(){
+  return this.town;
+}
+public void setTown(String town){
+  this.town = town;
 }
 
 public void setSeasonPrice(int amount){

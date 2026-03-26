@@ -21,6 +21,7 @@ public class DatabaseManager{
                 name    TEXT NOT NULL,
                 phone   TEXT,
                 address TEXT,
+                town TEXT,
                 seasonPrice INTEGER,
                 remainingDebt INTEGER
 
